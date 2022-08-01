@@ -3,6 +3,7 @@
 }
 
 .wrapper {
+    /*test*/
     width: 600px;
     /* max-height: 200px;  */
     margin: 0 auto;
@@ -29,7 +30,6 @@
 .slider__items {
     width: 80%;
     overflow: hidden;
-    /* background-color: pink; */
 }
 
 .slider__visible {
