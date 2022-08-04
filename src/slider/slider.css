@@ -3,9 +3,7 @@
 }
 
 .wrapper__silder {
-    /*test*/
     width: 600px;
-    /* max-height: 200px;  */
     margin: 0 auto;
     position: relative;
 }
@@ -131,5 +129,4 @@ body {
 
 .demo__width {
     min-width: 200px;
-    /* height: 200px; */
 }

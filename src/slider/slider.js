@@ -42,8 +42,6 @@ function sliderJs() {
                 itemsCount -
                 (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
 
-            // console.log("itemsCount :" + itemsCount);
-            // console.log("itemsLeft :" + itemsLeft);
             position -=
                 itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth;
             SetPosition();
