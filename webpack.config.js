@@ -1,59 +1,42 @@
 const path = require("path");
-const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const webpack = require("webpack");
-const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
     mode: "development",
-    context: path.resolve(__dirname, "src"),
+
     devServer: {
-        static: {
-            directory: path.join(__dirname, "./dist"),
-        },
-        compress: true,
-        historyApiFallback: true,
-        https: false,
-        open: true,
-        hot: true,
-        port: 9002,
-        proxy: {
-            "/api": "http://localhost:9000",
-        },
-        devMiddleware: {
-            writeToDisk: true,
-        },
+        port: 4200,
     },
 
-    entry: {
-        main: path.resolve(__dirname, "./src/index.js"),
-    },
+    entry: path.resolve(__dirname, "src/index.js"),
     output: {
-        path: path.resolve(__dirname, "./dist"),
+        path: path.resolve(__dirname, "/dist"),
         filename: "[name].bundle.js",
+        assetModuleFilename: "assets/[name][ext]",
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "webpack second project",
-            template: path.resolve(__dirname, "./src/template.html"),
-            filename: "index.html",
+            template: "template.html",
         }),
         new CleanWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
     ],
 
     module: {
-        rules: [
+        rules: [{
+                test: /.html$/i,
+                loader: "html-loader",
+            },
+
             // изображения
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/,
                 type: "asset/resource",
             },
-            // шрифты и SVG
+            // шрифты
             {
-                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                test: /\.(woff(2)?|eot|ttf|otf|)$/,
                 type: "asset/inline",
             },
             {
