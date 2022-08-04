@@ -24,14 +24,7 @@ module.exports = {
     ],
 
     module: {
-        rules: [
-            //js
-            // {
-            //     test: /\.js$/,
-            //     exclude: /node_modules/,
-            //     use: ["babel-loader"],
-            // },
-            {
+        rules: [{
                 test: /.html$/i,
                 loader: "html-loader",
             },
@@ -50,11 +43,6 @@ module.exports = {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
             },
-
-            // {
-            //     test: /\.svg$/,
-            //     loader: "svg-inline-loader?classPrefix",
-            // },
         ],
     },
 };

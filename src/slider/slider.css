@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.wrapper {
+.wrapper__silder {
     /*test*/
     width: 600px;
     /* max-height: 200px;  */
@@ -33,7 +33,6 @@
 }
 
 .slider__visible {
-    /* gap: 2vw; */
     justify-content: space-between;
     display: flex;
     flex-direction: row;

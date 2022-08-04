@@ -85,9 +85,9 @@ function sliderJs() {
         checkBtns();
     });
 
-    // butReset.addEventListener("click", () => {
-    //     location.href = location.href;
-    // });
+    butReset.addEventListener("click", () => {
+        location.reload();
+    });
 }
 
 sliderJs();
