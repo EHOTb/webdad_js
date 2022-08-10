@@ -4,17 +4,26 @@ window.onload = function() {
     let operand = "";
     let finish = "";
 
+    let key1 = "";
+
+    let btnDot = document.querySelector(".dot");
+
     let keys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
-    let signs = ["+", "-", "X", "/"];
+    let dot = ["."];
+    let signs = ["+", "-", "X", "/", "%"];
+    let plusMinus = ["+/-"];
 
     let buttons = document.querySelector(".calc__buttons");
 
     let screen = document.querySelector(".calc__screen p");
 
-    // document.querySelector("calc__buttons").onclick = (event) => {
-    //     if (!event.target.classList.contains("calc__button")) return;
-    //     console.log(event.target.textContent);
-    // };
+    let changeSign = document.querySelector(".plus-minus");
+
+    document.addEventListener("keypress", (event) => {
+        key1 = event.key;
+
+        console.log(key);
+    });
 
     buttons.addEventListener("click", (event) => {
         if (!event.target.classList.contains("calc__button")) return;
@@ -24,21 +33,42 @@ window.onload = function() {
             operand = "";
             screen.textContent = "0";
         }
-        // screen.textContent = "";
 
-        let key = event.target.textContent;
-        // console.log(key);
+        key ? event.target.textContent : key1;
 
-        if (keys.includes(key)) {
+        console.log(key);
+        if (plusMinus.includes(key)) {
             if (second == "" && operand == "") {
-                first += key;
-
-                console.log(first);
+                first = first * -1;
                 screen.textContent = first;
-            } else if (first !== "" && second != "" && finish) {
+            } else if (first !== "" && second !== "" && finish) {
                 second = key;
                 finish = false;
                 screen.textContent = second;
+            } else {
+                second = second * -1;
+                screen.textContent = second;
+            }
+        }
+
+        if (keys.includes(key)) {
+            if (screen.textContent.length == 0 && key == ".") {
+                screen.textContent = "0.";
+            }
+            if (screen.textContent.includes(".")) {
+                let screen1 = screen.textContent.split("");
+                console.log("dot");
+                if (key == ".") {
+                    screen.textContent = screen1.split(0, -1).toFixed(4);
+                }
+            }
+            if (second == "" && operand == "") {
+                first += key;
+                screen.textContent = first;
+            } else if (first !== "" && second !== "" && finish) {
+                second = key;
+                finish = false;
+                screen.textContent = second.toFixed(4);
             } else {
                 second += key;
                 screen.textContent = second;
@@ -64,7 +94,10 @@ window.onload = function() {
                     first = first - second;
                     break;
                 case "X":
-                    first = first * second;
+                    first = +first * +second;
+                    break;
+                case "%":
+                    first = (+first / 100) * second;
                     break;
                 case "/":
                     if (second === "0") {
