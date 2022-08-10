@@ -20,7 +20,7 @@ window.onload = function() {
     let changeSign = document.querySelector(".plus-minus");
 
     document.addEventListener("keypress", (event) => {
-        key1 = event.key;
+        key = event.key;
 
         console.log(key);
     });
@@ -34,7 +34,7 @@ window.onload = function() {
             screen.textContent = "0";
         }
 
-        key ? event.target.textContent : key1;
+        let key = event.target.textContent;
 
         console.log(key);
         if (plusMinus.includes(key)) {
