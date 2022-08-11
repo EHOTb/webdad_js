@@ -3,29 +3,21 @@ window.onload = function() {
     let second = "";
     let operand = "";
     let finish = "";
-
-    let key1 = "";
-
-    let btnDot = document.querySelector(".dot");
+    let number = "";
+    let key = "";
 
     let keys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
     let dot = ["."];
-    let signs = ["+", "-", "X", "/", "%"];
+    let signs = ["+", "-", "*", "/", "%"];
     let plusMinus = ["+/-"];
 
     let buttons = document.querySelector(".calc__buttons");
 
     let screen = document.querySelector(".calc__screen p");
 
-    let changeSign = document.querySelector(".plus-minus");
-
     document.addEventListener("keypress", (event) => {
-        key = event.key;
+        calcAction(event.key);
 
-        console.log(key);
-    });
-
-    buttons.addEventListener("click", (event) => {
         if (!event.target.classList.contains("calc__button")) return;
         if (event.target.classList.contains("ac")) {
             first = "";
@@ -33,46 +25,72 @@ window.onload = function() {
             operand = "";
             screen.textContent = "0";
         }
+    });
 
-        let key = event.target.textContent;
+    buttons.addEventListener("click", (event) => {
+        key = event.target.textContent;
 
-        console.log(key);
+        if (!event.target.classList.contains("calc__button")) return;
+        if (event.target.classList.contains("ac")) {
+            first = "";
+            second = "";
+            operand = "";
+            screen.textContent = "0";
+        }
+        calcAction(key);
+    });
+
+    console.log(screen.innerHTML);
+
+    function calcAction(key) {
+        console.log(first.toString().length);
+        if (first.toString().length == 6) {
+            screen.textContent = "error";
+        }
+
         if (plusMinus.includes(key)) {
             if (second == "" && operand == "") {
                 first = first * -1;
+
                 screen.textContent = first;
             } else if (first !== "" && second !== "" && finish) {
                 second = key;
                 finish = false;
+
                 screen.textContent = second;
             } else {
                 second = second * -1;
+
                 screen.textContent = second;
             }
         }
 
         if (keys.includes(key)) {
             if (screen.textContent.length == 0 && key == ".") {
-                screen.textContent = "0.";
+                screen.textContent = "0." + screen.textContent;
+                console.log("test");
             }
             if (screen.textContent.includes(".")) {
                 let screen1 = screen.textContent.split("");
-                console.log("dot");
+
                 if (key == ".") {
-                    screen.textContent = screen1.split(0, -1).toFixed(4);
+                    screen.textContent = screen1.toString().split(0, -1).toFixed(4);
                 }
             }
             if (second == "" && operand == "") {
                 first += key;
+
                 screen.textContent = first;
             } else if (first !== "" && second !== "" && finish) {
                 second = key;
                 finish = false;
-                screen.textContent = second.toFixed(4);
+
+                screen.textContent = +second;
             } else {
                 second += key;
+
                 screen.textContent = second;
-                console.log(first, second, operand);
+                // console.log(first, second, operand);
             }
         }
         if (signs.includes(key)) {
@@ -82,7 +100,7 @@ window.onload = function() {
             return;
         }
 
-        if (key == "=") {
+        if (key == "=" || event.keyCode == "13") {
             if (second == "") {
                 second = first;
             }
@@ -93,7 +111,7 @@ window.onload = function() {
                 case "-":
                     first = first - second;
                     break;
-                case "X":
+                case "*":
                     first = +first * +second;
                     break;
                 case "%":
@@ -115,5 +133,5 @@ window.onload = function() {
             finish = true;
             screen.textContent = first;
         }
-    });
+    }
 };

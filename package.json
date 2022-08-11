@@ -31,7 +31,7 @@
         "webpack-dev-server": "^4.9.3"
     },
     "dependencies": {
-        "autoprefixer": "^10.4.7"
-
+        "autoprefixer": "^10.4.7",
+        "imports-loader": "^4.0.0"
     }
 }
