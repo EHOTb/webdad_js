@@ -42,6 +42,9 @@ window.onload = function() {
 
     function chckLength(el) {
         if (el.toString().length >= 8) {
+            let num = +el;
+            el = num.toFixed(4).replace(/0*$/, "");
+            el = el.slice(0, 7);
             screen.textContent = "error";
             first = "";
             second = "";
@@ -50,16 +53,7 @@ window.onload = function() {
         }
     }
 
-    function dotCheck(dots) {
-        dots = dots.replace(/[^\d\.]/g, "");
-        if (dots.match(/\./g).length > 1) {
-            dots = dots.substr(0, first.value.lastIndexOf("."));
-        }
-    }
-
     function calcAction(key) {
-        console.log(first.toString().length);
-
         if (plusMinus.includes(key)) {
             if (second == "" && operand == "") {
                 first = first * -1;
@@ -81,38 +75,40 @@ window.onload = function() {
         }
 
         if (keys.includes(key)) {
-            if (screen.textContent.includes(dot) && key == ".") {
-                screen.textContent = "hello" + screen.textContent;
-                console.log("test");
-            }
-            if (screen.textContent.includes(".")) {
-                let screen1 = screen.textContent.split("");
-                console.log("hrllo");
-            }
             if (second == "" && operand == "") {
                 first += key;
-
+                if (first.indexOf(".") !== -1) {
+                    if (first.indexOf(".") === 0) {
+                        first = "0" + first;
+                    }
+                    first = first.replace(/^([^\.]*\.)|\./g, "$1");
+                }
                 screen.textContent = first;
-                console.log(typeof first);
+
                 chckLength(first);
-                dotCheck(first);
+                // dotCheck(first);
             } else if (first !== "" && second !== "" && finish) {
                 second = key;
                 finish = false;
 
                 screen.textContent = +second;
                 chckLength(second);
-                dotCheck(second);
+                // dotCheck(second);
             } else {
                 second += key;
-
+                if (second.indexOf(".") !== -1) {
+                    if (second.indexOf(".") === 0) {
+                        second = "0" + second;
+                    }
+                    second = second.replace(/^([^\.]*\.)|\./g, "$1");
+                }
                 screen.textContent = second;
                 chckLength(second);
-                dotCheck(second25);
+
                 console.log(first, second, operand);
             }
         }
-        if (signs.includes(key)) {
+        if (first !== "" && signs.includes(key)) {
             operand = key;
             screen.textContent = key;
 
@@ -150,7 +146,29 @@ window.onload = function() {
                     break;
             }
             finish = true;
-            screen.textContent = first;
+
+            if (first.toString().length >= 8) {
+                let num = +first;
+                first = num.toFixed(4).replace(/0*$/, "");
+                first = Number(first.slice(0, 7));
+                // console.log("num", num);
+                // console.log("first", first);
+                // console.log(">7");
+                // console.log("typeof", typeof first);
+                screen.textContent = Number(first);
+                if (first.toString().length >= 9) {
+                    screen.textContent = "error";
+                    first = "";
+                    second = "";
+                    operand = "";
+                    return;
+                }
+            } else {
+                console.log("до 7");
+
+                console.log(typeof first);
+                screen.textContent = first;
+            }
         }
     }
 };
