@@ -2,12 +2,11 @@ window.onload = function() {
     let first = "";
     let second = "";
     let operand = "";
+    let res = "";
     let finish = "";
-    let number = "";
     let key = "";
 
     let keys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
-    let dot = ["."];
     let signs = ["+", "-", "*", "/", "%"];
     let plusMinus = ["+/-"];
 
@@ -75,6 +74,7 @@ window.onload = function() {
         }
 
         if (keys.includes(key)) {
+            console.log("F:" + first, "S:" + second, "O:" + operand);
             if (second == "" && operand == "") {
                 first += key;
                 if (first.indexOf(".") !== -1) {
@@ -86,14 +86,12 @@ window.onload = function() {
                 screen.textContent = first;
 
                 chckLength(first);
-                // dotCheck(first);
             } else if (first !== "" && second !== "" && finish) {
                 second = key;
                 finish = false;
 
                 screen.textContent = +second;
                 chckLength(second);
-                // dotCheck(second);
             } else {
                 second += key;
                 if (second.indexOf(".") !== -1) {
@@ -108,7 +106,11 @@ window.onload = function() {
                 console.log(first, second, operand);
             }
         }
-        if (first !== "" && signs.includes(key)) {
+
+        if (res !== "" && signs.includes(key)) {
+            first = res;
+            res = "";
+        } else if (first !== "" && signs.includes(key)) {
             operand = key;
             screen.textContent = key;
 
@@ -121,16 +123,28 @@ window.onload = function() {
             }
             switch (operand) {
                 case "+":
-                    first = +first + +second;
+                    res = +first + +second;
+                    first = "";
+                    second = "";
+                    operand = "";
                     break;
                 case "-":
-                    first = first - second;
+                    res = first - second;
+                    first = "";
+                    second = "";
+                    operand = "";
                     break;
                 case "*":
-                    first = +first * +second;
+                    res = +first * +second;
+                    first = "";
+                    second = "";
+                    operand = "";
                     break;
                 case "%":
-                    first = (+first / 100) * second;
+                    res = (+first / 100) * second;
+                    first = "";
+                    second = "";
+                    operand = "";
                     break;
                 case "/":
                     if (second === "0") {
@@ -142,33 +156,19 @@ window.onload = function() {
 
                         return;
                     }
-                    first = first / second;
+                    res = first / second;
                     break;
             }
-            finish = true;
-
-            if (first.toString().length >= 8) {
+            if (res.toString().length >= 8) {
                 let num = +first;
-                first = num.toFixed(4).replace(/0*$/, "");
-                first = Number(first.slice(0, 7));
-                // console.log("num", num);
-                // console.log("first", first);
-                // console.log(">7");
-                // console.log("typeof", typeof first);
-                screen.textContent = Number(first);
-                if (first.toString().length >= 9) {
-                    screen.textContent = "error";
-                    first = "";
-                    second = "";
-                    operand = "";
-                    return;
-                }
+                res = num.toFixed(4).replace(/0*$/, "");
+                res = Number(res.slice(0, 7));
             } else {
-                console.log("до 7");
-
-                console.log(typeof first);
-                screen.textContent = first;
+                console.log("F:" + first, "S:" + second, "O:" + operand);
+                console.log("res: " + res);
+                screen.textContent = res;
             }
+            finish = true;
         }
     }
 };
