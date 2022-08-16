@@ -87,10 +87,10 @@ window.onload = function() {
 
                 chckLength(first);
             } else if (first !== "" && second !== "" && finish) {
-                second = key;
+                second += key;
                 finish = false;
 
-                screen.textContent = +second;
+                screen.textContent = second;
                 chckLength(second);
             } else {
                 second += key;
@@ -109,7 +109,10 @@ window.onload = function() {
 
         if (res !== "" && signs.includes(key)) {
             first = res;
+            operand = key;
+            screen.textContent = key;
             res = "";
+            return;
         } else if (first !== "" && signs.includes(key)) {
             operand = key;
             screen.textContent = key;
