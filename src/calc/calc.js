@@ -74,7 +74,6 @@ window.onload = function() {
         }
 
         if (keys.includes(key)) {
-            console.log("F:" + first, "S:" + second, "O:" + operand);
             if (second == "" && operand == "") {
                 first += key;
                 if (first.indexOf(".") !== -1) {
@@ -102,8 +101,6 @@ window.onload = function() {
                 }
                 screen.textContent = second;
                 chckLength(second);
-
-                console.log(first, second, operand);
             }
         }
 
@@ -120,6 +117,12 @@ window.onload = function() {
             return;
         }
 
+        function clear() {
+            first = "";
+            second = "";
+            operand = "";
+        }
+
         if (key == "=" || event.keyCode == "13") {
             if (second == "") {
                 second = first;
@@ -127,35 +130,25 @@ window.onload = function() {
             switch (operand) {
                 case "+":
                     res = +first + +second;
-                    first = "";
-                    second = "";
-                    operand = "";
+                    clear();
                     break;
                 case "-":
                     res = first - second;
-                    first = "";
-                    second = "";
-                    operand = "";
+                    clear();
                     break;
                 case "*":
                     res = +first * +second;
-                    first = "";
-                    second = "";
-                    operand = "";
+                    clear();
                     break;
                 case "%":
                     res = (+first / 100) * second;
-                    first = "";
-                    second = "";
-                    operand = "";
+                    clear();
                     break;
                 case "/":
                     if (second === "0") {
                         screen.textContent = "error";
 
-                        first = "";
-                        second = "";
-                        operand = "";
+                        clear();
 
                         return;
                     }
@@ -167,8 +160,6 @@ window.onload = function() {
                 res = num.toFixed(4).replace(/0*$/, "");
                 res = Number(res.slice(0, 7));
             } else {
-                console.log("F:" + first, "S:" + second, "O:" + operand);
-                console.log("res: " + res);
                 screen.textContent = res;
             }
             finish = true;
