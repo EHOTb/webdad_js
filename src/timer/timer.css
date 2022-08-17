@@ -7,7 +7,8 @@
 .timer {}
 
 .timer__header {
-    font-size: 35px;
+    font-size: 75px;
+    text-transform: uppercase;
     text-align: center;
     padding: 2rem 0 4rem;
 }
@@ -139,4 +140,5 @@
     padding: 1rem;
     border: 0.5rem inset #fff;
     border-radius: 0px 1rem 0px 2rem;
+    box-shadow: 3px 4px 4px 3px;
 }
