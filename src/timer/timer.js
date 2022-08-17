@@ -1,3 +1,5 @@
+let count = 0,
+    restCount = 1;
 let work = "";
 let countWork = 0;
 let workMinutes = document.querySelector(".item__work-minutes");
@@ -165,15 +167,30 @@ longBreakOk.addEventListener("click", () =>
 );
 
 //====================================js==================//
+function logoRemove() {
+    logoLongBreak.classList.remove("text-active");
+    logoWork.classList.remove("text-active");
+    logoBreak.classList.remove("text-active");
+}
 
-start.addEventListener("click", function start() {
-    if (countWork == 0 && shortBreak == 0 && longBreak == 0) {
+function main() {
+    console.log("testokMAIN");
+    if (count == 0 || count % 2 == 0) {
+        count++;
+        console.log(count);
         minutes.innerHTML = workMinutes.innerHTML;
         seconds.innerHTML = workSeconds.innerHTML;
+        logoWork.classList.add("text-active");
         work = setInterval(function time() {
-            console.log(seconds.innerHTML, minutes.innerHTML);
+            console.log("count :" + count, "restCount :" + restCount, "work:" + work);
+            // console.log(seconds.innerHTML, minutes.innerHTML);
             seconds.innerHTML = seconds.innerHTML - 1;
             if (seconds.innerHTML == 0) {
+                if (seconds.innerHTML < 0 || minutes.innerHTML < 0) {
+                    seconds.innerHTML = 59;
+                    minutes.innerHTML = 0;
+                }
+
                 if (seconds.innerHTML == 0) {
                     seconds.innerHTML = 59;
                     minutes.innerHTML = +minutes.innerHTML - 1;
@@ -183,31 +200,78 @@ start.addEventListener("click", function start() {
                 seconds.innerHTML = "0" + seconds.innerHTML;
             }
             if (seconds.innerHTML == "01" && minutes.innerHTML == "0") {
-                countWork++;
-                shortBreak++;
-                longBreak++;
-                logoWork.classList.remove("text-active");
-                logoBreak.classList.add("text-active");
-                console.log("test");
-                minutes.innerHTML = breakMinutes.innerHTML;
-                seconds.innerHTML = breakSeconds.innerHTML;
+                // new Audio(
+                //     "https://freetones.info/uploads/files/2021-05/1622322904_hvsh-zhiko-relax-take-it-easy.mp3 "
+                // ).play();
+                clearInterval(work);
+                logoRemove();
+                second();
             }
         }, 1000);
-        this.removeEventListener("click", start);
     }
-    if (seconds.innerHTML == 0 && minutes.innerHTML == 0) {
-        console.log(end);
-    }
-    countWork += 1;
-    logoWork.classList.remove("active");
-});
+    this.removeEventListener("click", main);
 
-stop.addEventListener("click", () => {
-    clearInterval(work);
-    start.addEventListener("click", function time() {
+    logoWork.classList.remove("active");
+}
+
+function second() {
+    console.log("count" + count, "restCount:" + restCount);
+
+    if (restCount % 3 == 0) {
+        console.log("testokLONG");
+        restCount++;
+        count++;
+        logoLongBreak.classList.add("text-active");
+        minutes.innerHTML = longBreakMinutes.innerHTML;
+        seconds.innerHTML = longBreakMinutes.innerHTML;
+
         work = setInterval(function time() {
+            // console.log(seconds.innerHTML, minutes.innerHTML);
             seconds.innerHTML = seconds.innerHTML - 1;
             if (seconds.innerHTML == 0) {
+                if (seconds.innerHTML == 0) {
+                    if (seconds.innerHTML < 0 || minutes.innerHTML < 0) {
+                        seconds.innerHTML = 59;
+                        minutes.innerHTML = 0;
+                    }
+                }
+
+                if (seconds.innerHTML <= 0) {
+                    seconds.innerHTML = 59;
+                    minutes.innerHTML = +minutes.innerHTML - 1;
+                }
+            }
+            if (seconds.innerHTML.length == 1) {
+                seconds.innerHTML = "0" + seconds.innerHTML;
+            }
+            if (seconds.innerHTML == "01" && minutes.innerHTML == "0") {
+                // new Audio(
+                //     "https://first.ap-south-1.linodeobjects.com/getringtone/uploads/ringtones/%D0%9E%D1%80%D0%BA%20-%20%D0%93%D0%BE%D1%82%D0%BE%D0%B2%20%D0%B2%D0%BA%D0%B0%D0%BB%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%21_yaDY.mp3"
+                // ).play();
+                clearInterval(work);
+                main();
+            }
+        }, 1000);
+    } else {
+        console.log("testokSHORT");
+        console.log("count :" + count, "restCount :" + restCount, "work:" + work);
+
+        restCount++;
+        count++;
+        logoBreak.classList.add("text-active");
+        minutes.innerHTML = breakMinutes.innerHTML;
+        seconds.innerHTML = breakSeconds.innerHTML;
+
+        work = setInterval(function time() {
+            // console.log(seconds.innerHTML, minutes.innerHTML);
+            seconds.innerHTML = seconds.innerHTML - 1;
+            if (seconds.innerHTML <= 0) {
+                if (seconds.innerHTML == 0) {
+                    if (seconds.innerHTML < 0 || minutes.innerHTML < 0) {
+                        seconds.innerHTML = 60;
+                        minutes.innerHTML = 0;
+                    }
+                }
                 if (seconds.innerHTML == 0) {
                     seconds.innerHTML = 60;
                     minutes.innerHTML = +minutes.innerHTML - 1;
@@ -216,6 +280,33 @@ stop.addEventListener("click", () => {
             if (seconds.innerHTML.length == 1) {
                 seconds.innerHTML = "0" + seconds.innerHTML;
             }
+            if (seconds.innerHTML == "01" && minutes.innerHTML == "0") {
+                // new Audio(
+                //     "https://first.ap-south-1.linodeobjects.com/getringtone/uploads/ringtones/%D0%9E%D1%80%D0%BA%20-%20%D0%93%D0%BE%D1%82%D0%BE%D0%B2%20%D0%B2%D0%BA%D0%B0%D0%BB%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%21_yaDY.mp3"
+                // ).play();
+                clearInterval(work);
+                main();
+            }
         }, 1000);
-    });
+    }
+}
+
+start.addEventListener("click", main);
+
+stop.addEventListener("click", () => {
+    clearInterval(work);
+    // start.addEventListener("click", function time() {
+    //     work = setInterval(function time() {
+    //         seconds.innerHTML = seconds.innerHTML - 1;
+    //         if (seconds.innerHTML == 0) {
+    //             if (seconds.innerHTML == 0) {
+    //                 seconds.innerHTML = 60;
+    //                 minutes.innerHTML = +minutes.innerHTML - 1;
+    //             }
+    //         }
+    //         if (seconds.innerHTML.length == 1) {
+    //             seconds.innerHTML = "0" + seconds.innerHTML;
+    //         }
+    //     }, 1000);
+    // });
 });
