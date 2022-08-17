@@ -299,9 +299,6 @@ function second() {
                 work = "";
                 main();
                 console.log("work" + work);
-
-                // clearInterval(work);
-                // main();
             }
         }, 1000);
     }
