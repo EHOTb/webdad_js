@@ -2,14 +2,14 @@
     box-sizing: border-box;
 }
 
-.wrapper__silder {
+.wrapper__first {
     width: 600px;
     margin: 0 auto;
     position: relative;
 }
 
 .slider {
-    background-color: rgb(192, 192, 192);
+    background-color: rgb(192, 191, 192);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
