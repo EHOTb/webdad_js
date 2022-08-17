@@ -1,0 +1,142 @@
+.wrapper__timer {
+    font-family: 'DynaPuff', sans-serif;
+    height: 800px;
+    background-color: rgb(255, 105, 210);
+}
+
+.timer {}
+
+.timer__header {
+    font-size: 35px;
+    text-align: center;
+    padding: 2rem 0 4rem;
+}
+
+.timer__items {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.timer__item {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    border: 3px solid #fff;
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: 3rem;
+}
+
+.timer__body-header {
+    position: absolute;
+    top: -3rem;
+    left: -3rem;
+    background-color: rgb(202, 6, 202);
+    padding: 0.8rem;
+    border: 3px solid #fff;
+    font-size: 2rem;
+    border-radius: 50%;
+}
+
+.timer__body-main {}
+
+.timer__items-footer {
+    display: flex;
+    gap: 2rem;
+}
+
+.timer__minutes {
+    display: flex;
+}
+
+.timer__minutes,
+.timer__seconds {
+    display: flex;
+    gap: 1rem;
+}
+
+.sign,
+.item__work-button {
+    background-color: rgb(254, 67, 195);
+    padding: 0 .4rem;
+    border: 1px solid #fff;
+    border-radius: 30%;
+    user-select: none;
+    box-shadow: 3px 3px 3px 3px;
+}
+
+.sign:hover,
+.item__work-button:hover {
+    filter: brightness(50%);
+    box-shadow: 2px 2px 2px 2px;
+}
+
+.work__minutes-plus {}
+
+.item__work-minutes {}
+
+.work__minutes-minus {}
+
+.timer__seconds {
+    display: flex;
+}
+
+.work__seconds-plus {}
+
+.item__work-seconds {}
+
+.work__seconds-minus {}
+
+.item__work-button {}
+
+.timer__body {
+    text-align: center;
+    font-size: 8rem;
+}
+
+.timer__time>* {
+    display: inline-block;
+}
+
+.timer__footer {
+    padding-top: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+}
+
+.footer_btn {
+    border: 3px solid #fff;
+    padding: 1rem 2rem;
+    border-radius: 50%;
+    background-color: rgb(228, 94, 255);
+    box-shadow: 4px 4px 4px 4px;
+}
+
+.footer_btn:hover {
+    filter: brightness(140%);
+    box-shadow: 2px 2px 2px 2px;
+}
+
+.footer__status {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer__btn-start {}
+
+.footer__name {}
+
+.footer__img {}
+
+.footer__text {
+    padding: 1.5rem;
+}
+
+.footer__btn-stop {}
+
+.text-active {
+    padding: 1rem;
+    border: 0.5rem inset #fff;
+    border-radius: 0px 1rem 0px 2rem;
+}
