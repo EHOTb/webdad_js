@@ -1,0 +1,43 @@
+.wrapper__maze {
+    height: 600px;
+    margin: 0 auto;
+}
+
+.maze {
+    margin: 0 auto;
+}
+
+.button {
+    display: inline-block;
+}
+
+.field {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: gray;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.avatar {
+    background: url(../../img/courier.png);
+    border-radius: 30%;
+    background-size: cover;
+}
+
+.exit {
+    background: url(../../img/rapier.jpg);
+    border-radius: 30%;
+    background-size: cover;
+}
+
+.wall {
+    background: url(../../img/wall.jpg);
+    border-radius: 10%;
+    background-size: cover;
+}
