@@ -1,27 +1,40 @@
-let reset = document.querySelector('.reset');
+let w;
+let h;
+let field;
 
-// reset.addEventListener('click', mazeFunc());
+let reset = document.querySelector('.reset');
+let button = document.querySelector('.confirm');
+
+
+function start() {
+
+    w = document.querySelector('.maze__measure-width').value;
+    h = document.querySelector('.maze__measure-height').value;
+    mazeFunc();
+    button.removeEventListener('click', start);
+};
+
+reset.addEventListener('click', function res() {
+    let fields = document.querySelector('.field');
+    field.remove("div");
+    button.addEventListener('click', start)
+});
+
+
+button.addEventListener('click', start)
 
 function mazeFunc() {
 
     // field.class.classList.remove()
-    let w = 4;
-    let h = 2;
+
     let resolutionField = w * h;
     let wallCount = 1;
-
     let time;
+
     let button = document.querySelector('.button__maze');
-
-    // button.addEventListener('click', () => {
-    //     console.log(document.querySelector('.maze__measure-width').value)
-    //     w = document.querySelector('.maze__measure-width').value;
-    //     h = document.querySelector('.maze__measure-height').value;
-
-
     let maze = document.querySelector(".maze");
 
-    let field = document.createElement("div");
+    field = document.createElement("div");
     maze.appendChild(field);
     field.classList.add("field");
     field.style.width = w * 50 + "px";
@@ -68,16 +81,20 @@ function mazeFunc() {
             wall = document.querySelector(
                 '[posX = "' + coordinates[0] + '"][posY = "' + coordinates[1] + '"]'
             );
-            // not working
-            // while (wall.classList.contains("wall" || "exit" || "avatar")) {
-            //     let coordinates = generate();
-            //     wall = document.querySelector(
-            //         '[posX = "' + coordinates[0] + '"][posY = "' + coordinates[1] + '"]'
-            //     );
-            // }
+
+            let checkX = wall.getAttribute("posX");
+            console.log(checkX)
+                // not working
+            while (coordinates[0] == 1 && coordinates[1] == 1 || coordinates[0] == w && coordinates[1] == h) {
+                let coordinates = generate();
+                wall = document.querySelector(
+                    '[posX = "' + coordinates[0] + '"][posY = "' + coordinates[1] + '"]'
+                );
+            }
+
             wall.classList.add("wall");
-            console.log(wall)
-                // console.log(wall);
+
+            // console.log(wall);
         }
     }
 
@@ -148,7 +165,7 @@ function mazeFunc() {
                 );
             } else {
                 coordinates[1] = h;
-                console.log(coordinates[0]);
+                // console.log(coordinates[0]);
                 avatar.unshift(document.querySelector('[posX =  "' + coordinates[0] + '"][posY = "' + (+coordinates[1]) + '"]'));
             }
         } else if (direction == 'down') {
@@ -194,7 +211,7 @@ function mazeFunc() {
             audio.play();
             wallCount++;
             createWall();
-            console.log(wallCount);
+            // console.log(wallCount);
 
 
         }
@@ -207,23 +224,22 @@ function mazeFunc() {
     let interval = setInterval(move, 1300);
 
     window.addEventListener('keydown', function(e) {
-            e.preventDefault();
+
             if (e.keyCode == 37) {
+                e.preventDefault();
                 direction = 'left';
 
             } else if (e.keyCode == 38) {
-
+                e.preventDefault();
                 direction = 'up';
 
             } else if (e.keyCode == 39) {
-
+                e.preventDefault();
                 direction = 'right';
             } else if (e.keyCode == 40) {
-
+                e.preventDefault();
                 direction = 'down';
             }
         })
         // })
 }
-
-mazeFunc();

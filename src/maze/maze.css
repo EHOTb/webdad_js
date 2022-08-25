@@ -25,11 +25,20 @@
     font-weight: 600;
 }
 
-.maze__button {
+.maze__buttons {
     display: flex;
+    gap: 2rem;
     justify-content: center;
     padding-bottom: 2rem;
     cursor: pointer;
+}
+
+.button__maze {
+    box-shadow: 3px 3px 3px black;
+}
+
+.button__maze:hover {
+    box-shadow: 1px 1px 2px black;
 }
 
 .field {
