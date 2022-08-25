@@ -3,12 +3,32 @@
     margin: 0 auto;
 }
 
+.end__game {
+    background: url('../../img/lose.jpg') 0 0/100% 100% no-repeat;
+}
+
+.win__game {
+    background: url('../../img/win.jpg') 0 0/100% 100% no-repeat;
+}
+
 .maze {
     margin: 0 auto;
 }
 
-.button {
-    display: inline-block;
+.maze__measure {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.maze__confirm {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+    cursor: pointer;
 }
 
 .field {
