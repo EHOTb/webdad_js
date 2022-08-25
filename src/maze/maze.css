@@ -5,6 +5,7 @@
 
 .end__game {
     background: url('../../img/lose.jpg') 0 0/100% 100% no-repeat;
+    z-index: 1;
 }
 
 .win__game {
@@ -24,7 +25,7 @@
     font-weight: 600;
 }
 
-.maze__confirm {
+.maze__button {
     display: flex;
     justify-content: center;
     padding-bottom: 2rem;
