@@ -43,10 +43,6 @@ module.exports = {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
             },
-            // {
-            //     test: require.resolve("chart.js"),
-            //     use: "imports-loader?this=>window",
-            // },
         ],
     },
 };

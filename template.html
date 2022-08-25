@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=DynaPuff' rel='stylesheet'>
     <title>Slider</title>
 </head>
 
@@ -95,6 +97,94 @@
                     <div class="calc__button equal bg-orange">=</div>
 
                 </div>
+            </div>
+        </div>
+        <div class="wrapper__timer">
+            <div class="timer">
+                <div class="timer__header">
+                    Pomodoro timer
+                </div>
+                <div class="timer__header">
+                    <div class="timer__items">
+                        <div class="timer__item">
+                            <div class="timer__body-header">Worktime</div>
+                            <div class="timer__body-main">
+                                <div class=" timer__items-footer">
+                                    <div class="timer__minutes">
+                                        <div class="work__minutes-plus sign">+</div>
+                                        <div class="item__work-minutes">0</div>
+                                        <div class="work__minutes-minus sign">-</div>
+                                    </div>
+                                    <div class="timer__seconds">
+                                        <div class="work__seconds-plus sign">+</div>
+                                        <div class="item__work-seconds">05</div>
+                                        <div class="work__seconds-minus sign">-</div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timer__item">
+                            <div class="timer__body-header">Break</div>
+                            <div class="timer__body-main">
+                                <div class=" timer__items-footer">
+                                    <div class="timer__minutes">
+                                        <div class="break__minutes-plus sign">+</div>
+                                        <div class="item__break-minutes">0</div>
+                                        <div class="break__minutes-minus sign">-</div>
+                                    </div>
+                                    <div class="timer__seconds">
+                                        <div class="break__seconds-plus sign">+</div>
+                                        <div class="item__break-seconds">05</div>
+                                        <div class="break__seconds-minus sign">-</div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timer__item">
+                            <div class="timer__body-header">Long Break</div>
+                            <div class="timer__body-main">
+                                <div class=" timer__items-footer">
+                                    <div class="timer__minutes">
+                                        <div class="longBreak__minutes-plus sign">+</div>
+                                        <div class="item__longBreak-minutes">0</div>
+                                        <div class="longBreak__minutes-minus sign">-</div>
+                                    </div>
+                                    <div class="timer__seconds">
+                                        <div class="longBreak__seconds-plus sign">+</div>
+                                        <div class="item__longBreak-seconds">05</div>
+                                        <div class="longBreak__seconds-minus sign">-</div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer__body">
+                    <div class="timer__time">
+                        <div class="timer__time-minutes">0</div>
+                        <div class="p">:</div>
+                        <div class="timer__time-seconds">05</div>
+                    </div>
+                </div>
+                <div class="timer__footer">
+                    <div class="footer__btn-start footer_btn btn">Start</div>
+                    <div class="footer__name">
+                        <div class="footer__img"></div>
+                        <div class="footer__status">
+                            <div class="footer__text  text-active" id="text-work">Work</div>
+                            <div class="footer__text" id="text-break">Break</div>
+                            <div class="footer__text" id="text-longBreak">Long Break</div>
+                        </div>
+                    </div>
+                    <div class="footer__btn-stop footer_btn btn">Stop</div>
+                </div>
+
             </div>
         </div>
     </div>
