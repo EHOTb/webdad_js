@@ -3,19 +3,28 @@ let height = document.querySelector('.maze__measure-height').value;
 let field;
 let avatar;
 let cell;
-let wallCount = 0;
+let wallCount;
+let time;
 
 let wallsOnField;
 
 let direction;
-let walls = [];
 let positionX;
 let positionY;
 
 
-let reset = document.querySelector('.reset');
+let resetBtn = document.querySelector('.reset');
 let buttonStart = document.querySelector('.confirm');
 
+let reset = () => {
+    cell.forEach(el => {
+        el.classList.remove("wall");
+    });
+    wallCount = 1;
+
+}
+
+resetBtn.addEventListener('click', reset)
 
 buttonStart.addEventListener('click', start);
 
@@ -96,9 +105,7 @@ function avatarFunc() {
     for (let el of cell) {
         el.classList.remove('avatar');
     }
-    avatar =
-
-        document.querySelector('[posX = "' + 1 + '"][posY = "' + 1 + '"]');
+    avatar = document.querySelector('[posX = "' + 1 + '"][posY = "' + 1 + '"]');
     avatar.classList.add('avatar');
 }
 
@@ -147,20 +154,25 @@ let move = (event) => {
 
     if (nextMove.classList.contains('wall')) {
         let audio = new Audio('https://zvukogram.com/mp3/cats/1187/__raclure__wrong.mp3');
-
         audio.play();
+        document.querySelector('.field').classList.add('end__game');
+        reset();
+        avatarFunc();
+        time = setTimeout(() => { document.querySelector('.field').classList.remove('end__game') }, 1000);
 
         return;
     }
     if (x == width && y == height) {
         let audio = new Audio('https://zvukogram.com/mp3/cats/1354/pobednyiy-zvuk-fanfar.mp3');
-
-        wallsOnField();
         audio.play();
+        document.querySelector('.field').classList.add('win__game');
+        time = setTimeout(() => { document.querySelector('.field').classList.remove('win__game') }, 1000);
         avatarCell.classList.remove('avatar');
         nextMove.classList.remove('avatar');
         avatarFunc();
-        wallCount++;
+        wallsOnField();
+
+
 
         return;
     }
