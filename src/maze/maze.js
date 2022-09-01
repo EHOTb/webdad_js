@@ -38,16 +38,15 @@ let generate = () => {
     return `[posX="${posX}"][posY="${posY}"]`;
 }
 
-wallsOnField = (field, wallCount = 0) => {
+wallsOnField = (field, wallCount = 1) => {
     let wallsCoordinates = generate();
     let wall = document.querySelector(wallsCoordinates);
-
     if (wall.classList.contains('wall')) {
         wall -= 1;
     }
     console.log(wall)
     wall.classList.add('wall');
-
+    wallCount++;
     return wallsOnField(field, wallCount);
 
 }
