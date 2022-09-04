@@ -1,11 +1,11 @@
 let width = document.querySelector('.maze__measure-width').value;
 let height = document.querySelector('.maze__measure-height').value;
-let field;
 let avatar;
 let cell;
-let wallCount;
+let levelUp = 0;
+let wallCount = 0;
 let time;
-
+let count;
 let wallsOnField;
 
 let direction;
@@ -20,7 +20,8 @@ let reset = () => {
     cell.forEach(el => {
         el.classList.remove("wall");
     });
-    wallCount = 1;
+    wallCount = 0;
+    avatarFunc();
 
 }
 
@@ -31,6 +32,7 @@ buttonStart.addEventListener('click', start);
 function start() {
     createField();
     buttonStart.removeEventListener('click', start);
+
 };
 
 let generate = () => {
@@ -43,21 +45,40 @@ let generate = () => {
     if (posX == width && posY == height) {
         return generate();
     }
+    console.log(`[posX="${posX}"][posY="${posY}"]`);
 
     return `[posX="${posX}"][posY="${posY}"]`;
 }
 
-wallsOnField = (field, wallCount = 1) => {
-    let wallsCoordinates = generate();
-    let wall = document.querySelector(wallsCoordinates);
-    if (wall.classList.contains('wall')) {
-        wall -= 1;
-    }
-    console.log(wall)
-    wall.classList.add('wall');
-    wallCount++;
-    return wallsOnField(field, wallCount);
+// wallsOnField = (count) => {
+//     console.log(count)
+//     if (levelUp == 0 || count == 0) {
+//         return;
+//     } else {
 
+//         let wallsCoordinates = generate();
+//         let wall = document.querySelector(wallsCoordinates);
+//         if (wall.classList.contains('wall')) {
+//             wall -= 1;
+//         }
+//         wall.classList.add('wall');
+//         count--;
+//         return wallsOnField();
+//     }
+// }
+
+wallsOnField = () => {
+    count = wallCount;
+    if (count > 0) {
+        let wallsCoordinates = generate();
+        let wall = document.querySelector(wallsCoordinates);
+        if (wall.classList.contains('wall')) {
+            // wall -= 1;
+            generate();
+        }
+        wall.classList.add('wall');
+        count--;
+    }
 }
 
 
@@ -169,11 +190,10 @@ let move = (event) => {
         time = setTimeout(() => { document.querySelector('.field').classList.remove('win__game') }, 1000);
         avatarCell.classList.remove('avatar');
         nextMove.classList.remove('avatar');
+        Number(wallCount++);
+        console.log('wallCount = ' + wallCount);
         avatarFunc();
         wallsOnField();
-
-
-
         return;
     }
 
