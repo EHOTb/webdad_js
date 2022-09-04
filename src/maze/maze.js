@@ -73,8 +73,8 @@ wallsOnField = () => {
         let wallsCoordinates = generate();
         let wall = document.querySelector(wallsCoordinates);
         if (wall.classList.contains('wall')) {
-            // wall -= 1;
-            generate();
+            count++;
+
         }
         wall.classList.add('wall');
         count--;
