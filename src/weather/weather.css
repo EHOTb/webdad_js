@@ -1,6 +1,6 @@
 .wrapper__weather {
     background: url(../../img/weather.jpg) 0 0/cover no-repeat;
-    height: 600px;
+    height: 38rem;
 }
 
 .weather {
@@ -10,17 +10,17 @@
 }
 
 .weather__body {
-    width: 300px;
-    height: 400px;
+    width: 19rem;
+    height: 25rem;
     background-color: rgb(124 229 255 / 30%);
     border-radius: 15%;
-    border: 2px solid black;
+    border: 0.2rem solid black;
     font-size: 2rem;
-    padding-left: 13px;
+    padding-left: 0.9rem;
 }
 
 .weater__icon img {
-    width: 75px;
+    width: 4.7rem;
 }
 
 .weater__icon {
@@ -51,20 +51,20 @@
 
 .weather__button {
     background-color: aqua;
-    border-radius: 10px;
-    margin: 30px 0 0 70px;
+    border-radius: 0.8rem;
+    margin: 2rem 0 0 4.3rem;
     text-align: center;
-    width: 130px;
-    border: 1px solid black;
-    box-shadow: 3px 3px 3px black;
+    width: 8rem;
+    border: 0.2rem solid black;
+    box-shadow: 0.2rem 0.2rem 0.2rem black;
     cursor: pointer;
 }
 
 .weather__button:hover {
-    box-shadow: 1px 1px 1px black;
+    box-shadow: 0.1rem 0.1rem 0.1rem black;
 }
 
 .weather__input {
-    padding: 4px;
+    padding: 0.2rem;
     font-size: 1rem;
 }

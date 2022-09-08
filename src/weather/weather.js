@@ -1,17 +1,14 @@
 let location;
 
-
 navigator.geolocation.getCurrentPosition(function(position) {
     lat = position.coords.latitude;
     lng = position.coords.longitude;
 
     let coordinates;
 
-
     let weather = document.querySelector('#weather');
     async function place(e) {
         coordinates = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=5&appid=a11f231a7b3e80c9cd6a126aee6f41cc`;
-
         let response = await fetch(coordinates, { method: 'GET' });
         let responseCoordinates = await fetch(coordinates, { method: 'GET' });
         let responseCoordinatesResult = await response.json();
@@ -37,7 +34,6 @@ navigator.geolocation.getCurrentPosition(function(position) {
         location = dataPlace[0].name;
     }
 
-
     function getWeather(data) {
 
         let temp = Math.round(data.main.temp);
@@ -46,8 +42,6 @@ navigator.geolocation.getCurrentPosition(function(position) {
         let weatherIcon = data.weather[0].icon;
         let humidity = data.main.humidity;
         let template = `
-
-        
         <div className="weather__header">
             <div class="weater__icon"><img src="https://openweathermap.org/img/w/${weatherIcon}.png" <div class="weather__anotation">${weatherStatus}</div>
         </div>
@@ -56,16 +50,11 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
         <div class="weather__city">${location}</div>
         <div class="weather__humidity">Humidity: ${humidity} %</div>
-       
-   
-    
 `;
 
         weather.innerHTML = template;
     }
     place();
-
-
 });
 let buttonWeather = document.querySelector('.weather__button');
 
@@ -93,7 +82,6 @@ buttonWeather.addEventListener('click', () => {
         let weatherIcon = data.weather[0].icon;
         let humidity = data.main.humidity;
         let template = `
-
         
         <div className="weather__header">
             <div class="weater__icon"><img src="https://openweathermap.org/img/w/${weatherIcon}.png" <div class="weather__anotation">${weatherStatus}</div>
@@ -103,11 +91,8 @@ buttonWeather.addEventListener('click', () => {
 
         <div class="weather__city">${location}</div>
         <div class="weather__humidity">Humidity: ${humidity} %</div>
-       
-  
-    
+ 
 `;
-
         weather.innerHTML = template;
     }
     loadWeather();
