@@ -4,3 +4,4 @@ import "../template.html";
 import "./calc/calc";
 import "./timer/timer";
 import "./maze/maze";
+import "./weather/weather";
