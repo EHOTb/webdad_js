@@ -1,0 +1,70 @@
+.wrapper__weather {
+    background: url(../../img/weather.jpg) 0 0/cover no-repeat;
+    height: 600px;
+}
+
+.weather {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+.weather__body {
+    width: 300px;
+    height: 400px;
+    background-color: rgb(124 229 255 / 30%);
+    border-radius: 15%;
+    border: 2px solid black;
+    font-size: 2rem;
+    padding-left: 13px;
+}
+
+.weater__icon img {
+    width: 75px;
+}
+
+.weater__icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.weather__temp {}
+
+.weather__anotation {}
+
+.weather__city {
+    font-size: 3.5rem;
+}
+
+.weather__tempFells {
+    font-size: 1.5rem;
+    color: gray;
+    padding-top: 1rem;
+}
+
+.weather__header {
+    display: flex;
+    flex-direction: row;
+}
+
+.weather__button {
+    background-color: aqua;
+    border-radius: 10px;
+    margin: 30px 0 0 70px;
+    text-align: center;
+    width: 130px;
+    border: 1px solid black;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+}
+
+.weather__button:hover {
+    box-shadow: 1px 1px 1px black;
+}
+
+.weather__input {
+    padding: 4px;
+    font-size: 1rem;
+}
